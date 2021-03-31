@@ -86,28 +86,25 @@ class CompanyController extends Controller
 
 
     public function saveCompany(Request $request){
-//        $company = new company;
+       $company = new company;
         //error_log($request);
-//        $company->company_name=$request->company_name;
-//        $company->company_location=$request->company_location;
-//        $company->company_address=$request ->company_address;
+        $company->company_name=$request->company_name;
+        $company->company_location=$request->company_location;
+        $company->company_address=$request ->company_address;
+        $company->save();
 
-        $company = company::create([
-            'company_name'=>$request->company_name,
-            'company_location'=>$request->company_location,
-            'company_address'=>$request->company_address
-        ]);
-
-
-
-        error_log($company);
-//        $company->save();
+//        $company = company::create([
+//            'company_name'=>$request->company_name,
+//            'company_location'=>$request->company_location,
+//            'company_address'=>$request->company_address
+//        ]);
 
 
 
+//        error_log($company);
+////        $company->save();
         return response()->json([
-            $company
-
+            'reply'=>'company added successfully'
         ]);
 
 

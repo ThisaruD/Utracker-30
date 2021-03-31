@@ -16,10 +16,19 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         error_log($request);
+
+        $companyId = DB::table('companies')
+            ->select('company_id')
+            ->get();
+
+
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'user_role_id' => 'required',
+
         ]);
 //        'first_name' => 'required|string|max:255',
 //            'email' => 'required|string|email|max:255|unique:users',
@@ -30,14 +39,18 @@ class AuthController extends Controller
 
         $user = User::create([
             'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
             'email' => $validatedData['email'],
+            'user_roles_role_id' => $validatedData['user_role_id'],
             'password' => Hash::make($validatedData['password']),
+            'companies_company_id' => $companyId
         ]);
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
+
         ]);
     }
 
@@ -57,6 +70,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'user' => $user
         ]);
     }
 
@@ -66,7 +80,7 @@ class AuthController extends Controller
     }
 
     public function deleteProfile(Request $request,$id){
-        $vehicles = DB::table('vehicles')->where('users_user_id',$id)->pluck('vehicle_id')->toArray();
+        $vehicles = DB::table('vehicles')->where('users_id',$id)->pluck('vehicle_id')->toArray();
 
         if($vehicles){
             return 'Delete Existing Vehicles First';
@@ -95,7 +109,7 @@ class AuthController extends Controller
     public function getUserDetails(Request $request,$id){
 
         $user = DB::table('users')
-            ->where('user_id',$id)
+            ->where('id',$id)
             ->get();
 
 
@@ -115,7 +129,7 @@ class AuthController extends Controller
     public function updateUserDetails(Request $request,$id){
         error_log( $request);
         $userId = DB::table('users')
-            ->where('user_id',$id)
+            ->where('id',$id)
             ->update(['first_name'=>$request->first_name,
                     'last_name'=>$request->last_name,
                     'email'=>$request->email,

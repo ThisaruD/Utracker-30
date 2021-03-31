@@ -108,7 +108,7 @@ class VehicleController extends Controller
             //error_log($owner_id);
             $registerVehicle = new Vehicle();
 
-            $registerVehicle->users_user_id = $id;
+            $registerVehicle->users_id = $id;
             $registerVehicle->vehicle_number = $request->input('vehicle_number');
             $registerVehicle->type = $request->input('type');
             $registerVehicle->unit_per_1km = $request->input('unit_per_1km');
@@ -152,7 +152,7 @@ class VehicleController extends Controller
 
 
     public function getAllVehicleNumbers(Request $request,$id){
-        $company_id = DB::table('users')->where('user_id',$id)->value('companies_company_id');
+        $company_id = DB::table('users')->where('id',$id)->value('companies_company_id');
 
         $vehicles = DB::table('vehicles')->where('companies_company_id',$company_id)->pluck('vehicle_number')->toArray();
 

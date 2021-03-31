@@ -26,8 +26,8 @@ class CreateVehiclesTable extends Migration
 
 
             /////foreign keys//////
-            $table->foreignId('users_user_id')
-                ->references('user_id')
+            $table->foreignId('users_id')
+                ->references('id')
                 ->on('users');
 
             $table->foreignId('vehicle_owners_owner_id')
