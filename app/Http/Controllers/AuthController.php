@@ -17,25 +17,21 @@ class AuthController extends Controller
     {
         error_log($request);
 
-        $companyId = DB::table('companies')
-            ->select('company_id')
-            ->get();
-
-
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'user_role_id' => 'required',
+            'company_name' => 'required',
 
         ]);
-//        'first_name' => 'required|string|max:255',
-//            'email' => 'required|string|email|max:255|unique:users',
-//            'password' => 'required|string|min:8',
-//            'last_name' => 'required|string|max:255',
-//            'company_name'=> 'required',
-//            'user_role_id' => 'required'
+
+        $companyId = DB::table('companies')
+            ->where('company_name',$request->input('company_name'))
+            ->value('company_id');
+
+
 
         $user = User::create([
             'first_name' => $validatedData['first_name'],

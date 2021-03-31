@@ -24,9 +24,9 @@ class CreateTripsTable extends Migration
 
 
             /////foreign keys//////
-            $table->foreignId('vehicles_vehicle_id')
-                ->references('vehicle_id')
-                ->on('vehicles');
+//            $table->foreignId('vehicles_vehicle_id')
+//                ->references('vehicle_id')
+//                ->on('vehicles');
 
         });
     }

@@ -57,3 +57,5 @@ Route::put('/updatevehicledetails',[\App\Http\Controllers\VehicleController::cla
 
 
 //Route::post('/',[App\Http\Controllers\VehicleController::class, ]);
+
+Route::get('/getuniquedata',[\App\Http\Controllers\gps_reading::class,'getUniqueVehicleGpsData']);

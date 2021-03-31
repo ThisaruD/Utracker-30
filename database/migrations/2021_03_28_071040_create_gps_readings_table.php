@@ -33,9 +33,9 @@ class CreateGpsReadingsTable extends Migration
                 ->references('device_id')
                 ->on('vehicle_gps_devices');
 
-            $table->foreignId('trips_trip_id')
-                ->references('trip_id')
-                ->on('trips');
+//            $table->foreignId('trips_trip_id')
+//                ->references('trip_id')
+//                ->on('trips');
         });
     }
 
