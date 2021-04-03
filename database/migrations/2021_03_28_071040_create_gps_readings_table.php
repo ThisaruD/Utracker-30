@@ -20,7 +20,8 @@ class CreateGpsReadingsTable extends Migration
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
             $table->string('engine_condition')->nullable();
-            $table->dateTime('time')->nullable();
+            $table->date('date')->format('YYYY-MM-DD')->nullable();
+            $table->time('time')->format('HH:MM')->nullable();
             $table->integer('speed')->nullable();
 
 

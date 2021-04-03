@@ -19,9 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfcef9b3-cfcd-4ca8-a258-9835e6b0a56f" name="Default Changelist" comment="worked 31 without gps reading">
+    <list default="true" id="dfcef9b3-cfcd-4ca8-a258-9835e6b0a56f" name="Default Changelist" comment="developed vehicle live location function">
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/gps_reading.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/gps_reading.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_28_071040_create_gps_readings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_28_071040_create_gps_readings_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,6 +195,11 @@
       <workItem from="1617111853881" duration="8906000" />
       <workItem from="1617123369562" duration="4155000" />
       <workItem from="1617166942668" duration="25976000" />
+      <workItem from="1617251946223" duration="13008000" />
+      <workItem from="1617285090594" duration="5471000" />
+      <workItem from="1617341406615" duration="8132000" />
+      <workItem from="1617368377832" duration="6927000" />
+      <workItem from="1617425985569" duration="2720000" />
     </task>
     <task id="LOCAL-00001" summary="31st edited">
       <created>1617167093183</created>
@@ -205,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617185501507</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="developed vehicle live location function">
+      <created>1617252223987</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1617252223987</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,16 +244,38 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="31st edited" />
     <MESSAGE value="worked 31 without gps reading" />
-    <option name="LAST_COMMIT_MESSAGE" value="worked 31 without gps reading" />
+    <MESSAGE value="developed vehicle live location function" />
+    <option name="LAST_COMMIT_MESSAGE" value="developed vehicle live location function" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617115860531">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617115860531" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617185513559">
+    <state width="1237" height="126" key="GridCell.Tab.0.bottom" timestamp="1617283342663">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1237" height="126" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617283342663" />
+    <state width="1237" height="126" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252755120" />
+    <state width="1237" height="126" key="GridCell.Tab.0.center" timestamp="1617283342663">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1237" height="126" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617283342663" />
+    <state width="1237" height="126" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252755119" />
+    <state width="1237" height="126" key="GridCell.Tab.0.left" timestamp="1617283342662">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1237" height="126" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617283342662" />
+    <state width="1237" height="126" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252755119" />
+    <state width="1237" height="126" key="GridCell.Tab.0.right" timestamp="1617283342663">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1237" height="126" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617283342663" />
+    <state width="1237" height="126" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252755120" />
+    <state x="2221" y="173" key="Vcs.Push.Dialog.v2" timestamp="1617252233131">
+      <screen x="1920" y="0" width="1280" height="984" />
+    </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617185513559" />
+    <state x="2221" y="173" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252233131" />
   </component>
 </project>

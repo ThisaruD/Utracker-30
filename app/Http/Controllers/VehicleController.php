@@ -139,12 +139,12 @@ class VehicleController extends Controller
 
             return response()->json([
                 'reply'=>'vehicle added successfully'
-            ]);
+            ],200);
 
         }else{
             return response()->json([
                 'reply'=>'Operation Fail'
-            ]);
+            ],404);
         }
 
 
@@ -162,7 +162,9 @@ class VehicleController extends Controller
                 ], 200);
             }else {
 
-                return response('No Vehicles');
+                return response()->json([
+                    'message' => 'Not Found'
+                ], 404);
 
             }
 
@@ -196,22 +198,21 @@ class VehicleController extends Controller
             return response()->json([
 
                 'vehicle_num' => $vehicles->vehicle_number,
-                'type' => $vehicles->type,
+                'type1' => $vehicles->type,
                 'unit_per_1km' => $vehicles->unit_per_1km,
                 'driver_name'=>$driver->driver_name,
                 'driver_contact_no'=>$driver->driver_contact_no,
                 'owner_name'=>$owner->owner_name,
                 'owner_contact_no'=>$owner->owner_contact_no,
                 'serial_number'=>$device->serial_number,
-                'status'=>$device->status
+                'status1'=>$device->status
 
             ], 200);
         } else {
-            return response() - json([
+            return response() ->json([
                     'message' => 'Cannot find vehicle'
-                ]);
+                ],404);
         }
-
 
     }
 
@@ -252,7 +253,9 @@ class VehicleController extends Controller
                ], 200);
 
             }else{
-                return response('Cannot update');
+                return response()->json([
+                    'message' => 'Not Found',
+                ], 404);
             }
 
 
@@ -265,11 +268,22 @@ class VehicleController extends Controller
 //            ->where('vehicle_name',$request->vehicle_name)
 //            ->delete();
         $vehicle_number = $request->input('vehicle_number');
-        $vehicle_id = DB::table('vehicles')->where('vehicle_number',$vehicle_number)->value('vehicle_id');
+        if($vehicle_number) {
+            $vehicle_id = DB::table('vehicles')->where('vehicle_number', $vehicle_number)->value('vehicle_id');
 
-        DB::table('vehicle_drivers')->where('vehicles_vehicle_id',$vehicle_id)->delete();
-        DB::table('vehicles')->where('vehicle_number',$vehicle_number)->delete();
+            DB::table('vehicle_drivers')->where('vehicles_vehicle_id', $vehicle_id)->delete();
+            DB::table('gps_readings')->where('vehicles_vehicle_id', $vehicle_id)->delete();
+            DB::table('vehicle_gps_devices')->where('vehicles_vehicle_id', $vehicle_id)->delete();
+            DB::table('vehicles')->where('vehicle_number', $vehicle_number)->delete();
 
+            return response()->json([
+                'message' => 'successfully deleted',
+            ], 200);
+        }else{
+            return response()->json([
+                'message' => 'Not found',
+            ], 404);
+        }
 
 
     }

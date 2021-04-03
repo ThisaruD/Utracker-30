@@ -55,7 +55,7 @@ class AuthController extends Controller
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                'message' => 'Invalid login details'
+                'message' => 'Invalidlogindetails'
             ], 401);
         }
 
@@ -63,11 +63,14 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'user' => $user
-        ]);
+
+            return response()->json([
+                'message'=>'success',
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'user' => $user
+            ]);
+
     }
 
     public function me(Request $request)
@@ -92,11 +95,11 @@ class AuthController extends Controller
         if($user){
             return response() -> json([
                 'message'=>'Successfully deleted'
-            ]);
+            ],200);
         }else{
             return response() -> json([
                 'message'=>'Deletion Failed'
-            ]);
+            ],404);
         }
 
     }
@@ -116,7 +119,7 @@ class AuthController extends Controller
         }else{
             return response() -> json([
                 'message'=>'Cannot get user details'
-            ]);
+            ],404);
         }
 
     }
@@ -134,16 +137,36 @@ class AuthController extends Controller
                     'password'=>Hash::make($request->password)]
 
             );
-        echo($userId);
+        //echo($userId);
         if($userId){
             return response()->json([
-                'message' => 'successfully updated',
+                'message1' => 'successfully updated',
             ],200);
 
         }else{
             return response()->json([
-                'message' => 'User not exists']);
+                'message' => 'User not exists'],404);
 
+        }
+    }
+
+    public function deleteUserDetails(Request $request){
+        $user_id = $request->input('user_id');
+        if($user_id){
+            $vehicle = DB::table('vehicles')->where('users_id',$user_id)->pluck('vehicle_id')->toArray();
+            if(count($vehicle)>0){
+                return response()->json([
+                    'message' => 'User has Existing Vehicles. Delete Vehicles First'],400);
+            }else{
+                DB::table('users')->where('id',$user_id)->delete();
+                return response()->json([
+                    'message' => 'User deleted successfully'],200);
+
+            }
+
+        }else{
+            return response()->json([
+                'message' => 'User not found'],404);
         }
     }
 

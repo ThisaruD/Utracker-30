@@ -105,7 +105,7 @@ class CompanyController extends Controller
 ////        $company->save();
         return response()->json([
             'reply'=>'company added successfully'
-        ]);
+        ],200);
 
 
     }
@@ -174,14 +174,34 @@ class CompanyController extends Controller
 
     public function deleteCompany(Request $request){
 
-        $company = DB::table('companies')
-            ->where('company_name',$request->company_name)
-            ->delete();
 
-        if($company){
+        $company_id = DB::table('companies')
+            ->where('company_name',$request->company_name)
+            ->value('company_id');
+
+        if($company_id){
+            $user = DB::table('users')->where('companies_company_id',$company_id)->pluck('id')->toArray();
+            $vehicle = DB::table('vehicles')->where('companies_company_id',$company_id)->pluck('vehicle_id')->toArray();
+            if(count($user)>0 || count($vehicle)>0) {
+                return response()->json([
+                    'message' => 'Delete Existing Users or Vehicles first '
+                ], 400);
+
+            }
+            else{
+
+                DB::table('companies')->where('company_id',$company_id)->delete();
+                return response()->json([
+                    'message' => 'Deleted Successfully '
+                ], 200);
+
+                }
+
 
         }else{
-
+            return response()->json([
+                'message' => 'Not found '
+            ], 404);
         }
 
     }

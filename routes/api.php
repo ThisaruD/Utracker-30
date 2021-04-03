@@ -27,8 +27,12 @@ Route::get('/getuserdetails/{id}',[AuthController::class, 'getUserDetails']);
 //update user profile details
 Route::put('/updateuserdetails/{id}',[AuthController::class, 'updateUserDetails']);
 
+//Delete user Details
+Route::delete('/deleteuserdetails',[AuthController::class,'deleteUserDetails']);
 
-/////////company routes////////////////
+
+
+//==========================================company routes=====================================================================
 
 //save company details
 Route::post('/savecompanydetails', [\App\Http\Controllers\CompanyController::class, 'saveCompany']);
@@ -42,9 +46,12 @@ Route::get('/getallcompanies',[\App\Http\Controllers\CompanyController::class, '
 //update company details
 Route::put('/updatecompanydetails',[\App\Http\Controllers\CompanyController::class,'updateCompanyDetails']);
 
+//Delete  a company
+Route::delete('/deletecompanydetails',[\App\Http\Controllers\CompanyController::class,'deleteCompany']);
 
 
-///////vehicle routes////////////
+
+//============================================================vehicle routes====================================================
 
 //save new vehicle
 Route::post('/savevehicledetails/{id}',[\App\Http\Controllers\VehicleController::class,'saveVehicle']);
@@ -55,10 +62,13 @@ Route::get('/getvehicledetails',[\App\Http\Controllers\VehicleController::class,
 //update vehicle details for selected vehicle number
 Route::put('/updatevehicledetails',[\App\Http\Controllers\VehicleController::class,'updateVehicleDetails']);
 
-
+//Delete a vehicle
+Route::delete('/deletevehicledetails',[\App\Http\Controllers\VehicleController::class,'deleteVehicle']);
 //Route::post('/',[App\Http\Controllers\VehicleController::class, ]);
 
 
-///////gps readings routes////////////
+//===================================================gps readings routes====================================================
 ///////vehicles live location
 Route::get('/getuniquedata',[\App\Http\Controllers\gps_reading::class,'getUniqueVehicleGpsData']);
+//
+Route::get('/getvehiclepath',[\App\Http\Controllers\gps_reading::class,'getVehiclePath']);
