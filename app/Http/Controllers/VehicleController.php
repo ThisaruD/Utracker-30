@@ -6,6 +6,7 @@ use App\Models\vehicle;
 use App\Models\Vehicle_driver;
 use App\Models\vehicle_gps_device;
 use App\Models\Vehicle_owner;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -288,5 +289,39 @@ class VehicleController extends Controller
 
     }
 
+
+
+    ///for super admin-no send any requested data
+    public function getVehicleCount(Request $request){
+
+        $vehicleCount = DB::table('vehicles')
+            ->get('vehicle_number')
+            ->count();
+
+
+        return response()->json([
+            'vehiclesCount'=>$vehicleCount
+        ]);
+    }
+
+
+    //for transport manager and staff
+    public function getUniqueCompanyVehicleCount(Request $request){
+
+    $companyVehicleCount = DB::table('vehicles')
+                ->get('companies_company_id',$request->company_id)
+                ->count();
+
+    if($companyVehicleCount){
+        return response()->json([
+            'companyVehicleCount'=>$companyVehicleCount
+        ],200);
+    }else{
+        return response()->json([
+            'message'=>'Not Found'
+        ],404);
+    }
+
+    }
 
 }

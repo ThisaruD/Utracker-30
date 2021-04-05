@@ -19,14 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfcef9b3-cfcd-4ca8-a258-9835e6b0a56f" name="Default Changelist" comment="developed vehicle live location function">
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    <list default="true" id="dfcef9b3-cfcd-4ca8-a258-9835e6b0a56f" name="Default Changelist" comment="developed CRUD delete function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/gps_reading.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/gps_reading.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_28_071040_create_gps_readings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_28_071040_create_gps_readings_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -199,7 +195,14 @@
       <workItem from="1617285090594" duration="5471000" />
       <workItem from="1617341406615" duration="8132000" />
       <workItem from="1617368377832" duration="6927000" />
-      <workItem from="1617425985569" duration="2720000" />
+      <workItem from="1617425985569" duration="3537000" />
+      <workItem from="1617445805913" duration="1933000" />
+      <workItem from="1617465749183" duration="1452000" />
+      <workItem from="1617509648089" duration="4922000" />
+      <workItem from="1617530378276" duration="1948000" />
+      <workItem from="1617550246699" duration="7126000" />
+      <workItem from="1617597899660" duration="779000" />
+      <workItem from="1617621315905" duration="1894000" />
     </task>
     <task id="LOCAL-00001" summary="31st edited">
       <created>1617167093183</created>
@@ -222,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617252223987</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="developed CRUD delete function">
+      <created>1617440237884</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617440237884</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,7 +255,8 @@
     <MESSAGE value="31st edited" />
     <MESSAGE value="worked 31 without gps reading" />
     <MESSAGE value="developed vehicle live location function" />
-    <option name="LAST_COMMIT_MESSAGE" value="developed vehicle live location function" />
+    <MESSAGE value="developed CRUD delete function" />
+    <option name="LAST_COMMIT_MESSAGE" value="developed CRUD delete function" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617115860531">
@@ -272,10 +283,11 @@
     </state>
     <state width="1237" height="126" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617283342663" />
     <state width="1237" height="126" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252755120" />
-    <state x="2221" y="173" key="Vcs.Push.Dialog.v2" timestamp="1617252233131">
-      <screen x="1920" y="0" width="1280" height="984" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617440248031">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617185513559" />
     <state x="2221" y="173" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252233131" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617440248031" />
   </component>
 </project>

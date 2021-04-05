@@ -207,4 +207,29 @@ class CompanyController extends Controller
     }
 
 
+    ///for super admin-no send any requested data
+    public function getCompanyCount(Request $request){
+
+        $companyCount = DB::table('companies')
+            ->get('company_name')
+            ->count();
+
+        if($companyCount) {
+            return response()->json([
+                'numberOfCompanies' => $companyCount
+            ],200);
+
+        }else{
+            return response()->json([
+                'message'=>'Not Found any Vehicle'
+            ],404);
+        }
+
+    }
+
+
+
+
+
+
 }

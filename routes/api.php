@@ -49,6 +49,9 @@ Route::put('/updatecompanydetails',[\App\Http\Controllers\CompanyController::cla
 //Delete  a company
 Route::delete('/deletecompanydetails',[\App\Http\Controllers\CompanyController::class,'deleteCompany']);
 
+//get all company count
+Route::get('/getcompanycount',[\App\Http\Controllers\CompanyController::class,'getCompanyCount']);
+
 
 
 //============================================================vehicle routes====================================================
@@ -61,14 +64,16 @@ Route::get('/allvehiclenumbers/{id}',[\App\Http\Controllers\VehicleController::c
 Route::get('/getvehicledetails',[\App\Http\Controllers\VehicleController::class,'getVehicleDetails']);
 //update vehicle details for selected vehicle number
 Route::put('/updatevehicledetails',[\App\Http\Controllers\VehicleController::class,'updateVehicleDetails']);
-
 //Delete a vehicle
 Route::delete('/deletevehicledetails',[\App\Http\Controllers\VehicleController::class,'deleteVehicle']);
-//Route::post('/',[App\Http\Controllers\VehicleController::class, ]);
+//get all vehicle count
+Route::get('/getvehiclecount',[App\Http\Controllers\VehicleController::class,'getVehicleCount' ]);
+//get unique company vehicle count
+Route::get('/getuniquecompanyvehiclecount',[App\Http\Controllers\VehicleController::class,'getUniqueCompanyVehicleCount' ]);
 
 
 //===================================================gps readings routes====================================================
 ///////vehicles live location
 Route::get('/getuniquedata',[\App\Http\Controllers\gps_reading::class,'getUniqueVehicleGpsData']);
-//
+//////previous path
 Route::get('/getvehiclepath',[\App\Http\Controllers\gps_reading::class,'getVehiclePath']);
