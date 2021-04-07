@@ -82,7 +82,10 @@ class AuthController extends Controller
         $vehicles = DB::table('vehicles')->where('users_id',$id)->pluck('vehicle_id')->toArray();
 
         if($vehicles){
-            return 'Delete Existing Vehicles First';
+//            return 'message'=>'Delete Existing Vehicles First';
+            return response() ->json([
+                'message'=>'Delete Existing Vehicles First'
+            ]);
         }else{
 
         }
