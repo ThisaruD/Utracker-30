@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfcef9b3-cfcd-4ca8-a258-9835e6b0a56f" name="Default Changelist" comment="developed some super admin,manager based functions">
+    <list default="true" id="dfcef9b3-cfcd-4ca8-a258-9835e6b0a56f" name="Default Changelist" comment="commit changes before developed forgot password">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/gps_reading.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/gps_reading.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,6 +206,8 @@
       <workItem from="1617695595403" duration="1470000" />
       <workItem from="1617780295561" duration="2919000" />
       <workItem from="1617806262026" duration="1226000" />
+      <workItem from="1617807806650" duration="2226000" />
+      <workItem from="1617856916954" duration="1402000" />
     </task>
     <task id="LOCAL-00001" summary="31st edited">
       <created>1617167093183</created>
@@ -242,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617645485378</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit changes before developed forgot password">
+      <created>1617807874199</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617807874200</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +276,8 @@
     <MESSAGE value="developed vehicle live location function" />
     <MESSAGE value="developed CRUD delete function" />
     <MESSAGE value="developed some super admin,manager based functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="developed some super admin,manager based functions" />
+    <MESSAGE value="commit changes before developed forgot password" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit changes before developed forgot password" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617115860531">
@@ -294,11 +304,15 @@
     </state>
     <state width="1237" height="126" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617283342663" />
     <state width="1237" height="126" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252755120" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617645497643">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617807887058">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617185513559" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617807887058" />
     <state x="2221" y="173" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252233131" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617645497643" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1617807990209">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617807990209" />
   </component>
 </project>

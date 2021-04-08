@@ -12,7 +12,7 @@ class gps_reading extends Controller
 {
     //
 
-
+//get latest gps readings of the vehicle
     public function getUniqueVehicleGpsData(Request $request)
     {
 
@@ -72,6 +72,9 @@ class gps_reading extends Controller
 //            ->where()
 
     }
+
+
+//one vehicle path
 public function getVehiclePath(Request $request){
         $vehcile_id = DB::table('vehicles')
             ->where('vehicle_number',$request->input('vehicle_number'))
