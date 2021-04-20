@@ -23,12 +23,27 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/unAuthenticate',[AuthController::class,'unAuthenticate'])->name('unAuthenticate');
 Route::delete('/deleteuserdetails/{id}',[AuthController::class, 'deleteProfile']);
-Route::get('/getuserdetails/{id}',[AuthController::class, 'getUserDetails']);
+Route::get('/getuserdetails/{id}',[AuthController::class, 'getUserDetails'])->middleware('auth:sanctum');
+
 //update user profile details
 Route::put('/updateuserdetails/{id}',[AuthController::class, 'updateUserDetails']);
 
 //Delete user Details
-Route::delete('/deleteuserdetails',[AuthController::class,'deleteUserDetails']);
+Route::delete('/deleteuserdetails/{id}',[AuthController::class,'deleteUserDetails']);
+
+//forgot password
+Route::post('/forgot',[\App\Http\Controllers\ForgotController::class,'Forgot']);
+
+//reset password
+Route::post('/reset',[\App\Http\Controllers\ForgotController::class,'reset']);
+
+//get user count for Transport Manager
+Route::get('/getusercount/{id}',[AuthController::class,'getUserCount']);
+
+//get users details for Transport Manager
+Route::get('/getusersdetails',[AuthController::class,'getUsersDetails']);
+
+
 
 
 
@@ -47,10 +62,17 @@ Route::get('/getallcompanies',[\App\Http\Controllers\CompanyController::class, '
 Route::put('/updatecompanydetails',[\App\Http\Controllers\CompanyController::class,'updateCompanyDetails']);
 
 //Delete  a company
-Route::delete('/deletecompanydetails',[\App\Http\Controllers\CompanyController::class,'deleteCompany']);
+Route::delete('/deletecompanydetails/{id}',[\App\Http\Controllers\CompanyController::class,'deleteCompany']);
 
 //get all company count
 Route::get('/getcompanycount',[\App\Http\Controllers\CompanyController::class,'getCompanyCount']);
+
+//get all companies all details, for super admin
+Route::get('/getallcompaniesdetails',[\App\Http\Controllers\CompanyController::class, 'getAllCompaniesDetails']);
+
+
+
+
 
 
 
@@ -58,22 +80,49 @@ Route::get('/getcompanycount',[\App\Http\Controllers\CompanyController::class,'g
 
 //save new vehicle
 Route::post('/savevehicledetails/{id}',[\App\Http\Controllers\VehicleController::class,'saveVehicle']);
+
 //get unique company all vehicles
 Route::get('/allvehiclenumbers/{id}',[\App\Http\Controllers\VehicleController::class,'getAllVehicleNumbers']);
+
 //get vehicle details for unique vehicle number
 Route::get('/getvehicledetails',[\App\Http\Controllers\VehicleController::class,'getVehicleDetails']);
+
 //update vehicle details for selected vehicle number
 Route::put('/updatevehicledetails',[\App\Http\Controllers\VehicleController::class,'updateVehicleDetails']);
+
 //Delete a vehicle
-Route::delete('/deletevehicledetails',[\App\Http\Controllers\VehicleController::class,'deleteVehicle']);
+Route::delete('/deletevehicledetails/{id}',[\App\Http\Controllers\VehicleController::class,'deleteVehicle']);
+
 //get all vehicle count
 Route::get('/getvehiclecount',[App\Http\Controllers\VehicleController::class,'getVehicleCount' ]);
-//get unique company vehicle count
-Route::get('/getuniquecompanyvehiclecount',[App\Http\Controllers\VehicleController::class,'getUniqueCompanyVehicleCount' ]);
+
+////get unique company vehicle count
+//Route::get('/getuniquecompanyvehiclecount',[App\Http\Controllers\VehicleController::class,'getUniqueCompanyVehicleCount' ]);
+
+//get all vehicle details, for super admin
+Route::get('/getallvehiclesdetails',[App\Http\Controllers\VehicleController::class,'getAllVehiclesDetails' ]);
+
+
+//one company vehicle count(for transport manager)
+Route::get('/onecompanyvehiclecount/{id}',[App\Http\Controllers\VehicleController::class, 'oneCompanyVehicleCount']);
+
+//TM vehicle details
+Route::get('/tmvehicledetails/{id}',[App\Http\Controllers\VehicleController::class, 'getVehicleDetailsForTM']);
+
+
+
+
+
 
 
 //===================================================gps readings routes====================================================
-///////vehicles live location
+//vehicles live location
 Route::get('/getuniquedata',[\App\Http\Controllers\gps_reading::class,'getUniqueVehicleGpsData']);
-//////previous path
+
+
+//previous path
 Route::get('/getvehiclepath',[\App\Http\Controllers\gps_reading::class,'getVehiclePath']);
+
+
+//previous location
+Route::get('/previouslocation',[\App\Http\Controllers\gps_reading::class,'previousLocation']);

@@ -30,7 +30,7 @@ class VehicleOwnerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +41,7 @@ class VehicleOwnerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\vehicle_owner  $vehicle_owner
+     * @param \App\Models\vehicle_owner $vehicle_owner
      * @return \Illuminate\Http\Response
      */
     public function show(vehicle_owner $vehicle_owner)
@@ -52,7 +52,7 @@ class VehicleOwnerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\vehicle_owner  $vehicle_owner
+     * @param \App\Models\vehicle_owner $vehicle_owner
      * @return \Illuminate\Http\Response
      */
     public function edit(vehicle_owner $vehicle_owner)
@@ -63,8 +63,8 @@ class VehicleOwnerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\vehicle_owner  $vehicle_owner
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\vehicle_owner $vehicle_owner
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, vehicle_owner $vehicle_owner)
@@ -75,7 +75,7 @@ class VehicleOwnerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\vehicle_owner  $vehicle_owner
+     * @param \App\Models\vehicle_owner $vehicle_owner
      * @return \Illuminate\Http\Response
      */
     public function destroy(vehicle_owner $vehicle_owner)

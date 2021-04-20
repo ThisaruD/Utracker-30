@@ -36,7 +36,7 @@ class VehicleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +47,7 @@ class VehicleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\vehicle  $vehicle
+     * @param \App\Models\vehicle $vehicle
      * @return \Illuminate\Http\Response
      */
     public function show(vehicle $vehicle)
@@ -58,7 +58,7 @@ class VehicleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\vehicle  $vehicle
+     * @param \App\Models\vehicle $vehicle
      * @return \Illuminate\Http\Response
      */
     public function edit(vehicle $vehicle)
@@ -69,8 +69,8 @@ class VehicleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\vehicle  $vehicle
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\vehicle $vehicle
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, vehicle $vehicle)
@@ -81,7 +81,7 @@ class VehicleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\vehicle  $vehicle
+     * @param \App\Models\vehicle $vehicle
      * @return \Illuminate\Http\Response
      */
     public function destroy(vehicle $vehicle)
@@ -90,14 +90,14 @@ class VehicleController extends Controller
     }
 
 
-    public function saveVehicle(Request $request,$id)
+    public function saveVehicle(Request $request, $id)
     {
 
 
         $registerOwner = new Vehicle_owner();
         //error_log($request);
 
-        if($registerOwner) {
+        if ($registerOwner) {
 
 
             $registerOwner->owner_name = $request->input('owner_name');
@@ -139,35 +139,36 @@ class VehicleController extends Controller
 
 
             return response()->json([
-                'reply'=>'vehicle added successfully'
-            ],200);
+                'reply' => 'vehicle added successfully'
+            ], 200);
 
-        }else{
+        } else {
             return response()->json([
-                'reply'=>'Operation Fail'
-            ],404);
+                'reply' => 'Operation Fail'
+            ], 404);
         }
 
 
     }
 
 
-    public function getAllVehicleNumbers(Request $request,$id){
-        $company_id = DB::table('users')->where('id',$id)->value('companies_company_id');
+    public function getAllVehicleNumbers(Request $request, $id)
+    {
+        $company_id = DB::table('users')->where('id', $id)->value('companies_company_id');
 
-        $vehicles = DB::table('vehicles')->where('companies_company_id',$company_id)->pluck('vehicle_number')->toArray();
+        $vehicles = DB::table('vehicles')->where('companies_company_id', $company_id)->pluck('vehicle_number')->toArray();
 
-            if($vehicles) {
-                return response()->json([
-                    'vehicles' => $vehicles
-                ], 200);
-            }else {
+        if ($vehicles) {
+            return response()->json([
+                'vehicles' => $vehicles
+            ], 200);
+        } else {
 
-                return response()->json([
-                    'message' => 'Not Found'
-                ], 404);
+            return response()->json([
+                'message' => 'Not Found'
+            ], 404);
 
-            }
+        }
 
     }
 
@@ -183,94 +184,108 @@ class VehicleController extends Controller
             ->first();
 
         $driver = DB::table('vehicle_drivers')
-                ->where('vehicles_vehicle_id',$vehicles->vehicle_id)
-                ->first();
+            ->where('vehicles_vehicle_id', $vehicles->vehicle_id)
+            ->first();
 
         $owner = DB::table('vehicle_owners')
-            ->where('owner_id',$vehicles->vehicle_owners_owner_id)
+            ->where('owner_id', $vehicles->vehicle_owners_owner_id)
             ->first();
 
 
         $device = DB::table('vehicle_gps_devices')
-            ->where('vehicles_vehicle_id',$vehicles->vehicle_id)
+            ->where('vehicles_vehicle_id', $vehicles->vehicle_id)
             ->first();
 
         if ($vehicles) {
             return response()->json([
 
+                'vehicle_id' => $vehicles->vehicle_id,
                 'vehicle_num' => $vehicles->vehicle_number,
                 'type1' => $vehicles->type,
                 'unit_per_1km' => $vehicles->unit_per_1km,
-                'driver_name'=>$driver->driver_name,
-                'driver_contact_no'=>$driver->driver_contact_no,
-                'owner_name'=>$owner->owner_name,
-                'owner_contact_no'=>$owner->owner_contact_no,
-                'serial_number'=>$device->serial_number,
-                'status1'=>$device->status
+                'driver_name' => $driver->driver_name,
+                'driver_contact_no' => $driver->driver_contact_no,
+                'owner_name' => $owner->owner_name,
+                'owner_contact_no' => $owner->owner_contact_no,
+                'serial_number' => $device->serial_number,
+                'status1' => $device->status
 
             ], 200);
         } else {
-            return response() ->json([
-                    'message' => 'Cannot find vehicle'
-                ],404);
+            return response()->json([
+                'message' => 'Cannot find vehicle'
+            ], 404);
         }
 
     }
 
 
+    public function updateVehicleDetails(Request $request)
+    {
 
-    public function updateVehicleDetails(Request $request){
 
+        $vehicle_number = $request->input('vehicle_number');
+        $vehicle_id = DB::table('vehicles')->where('vehicle_number', $vehicle_number)->value('vehicle_id');
 
-            $vehicle_number = $request->input('vehicle_number');
-            $vehicle_id = DB::table('vehicles')->where('vehicle_number',$vehicle_number)->value('vehicle_id');
-
-            if($vehicle_id){
+        if ($vehicle_id) {
             DB::table('vehicles')
-                        ->where('vehicle_id',$vehicle_id)
-                        ->update(['type'=>($request->type),'unit_per_1km'=> ($request->unit_per_1km)]
+                ->where('vehicle_id', $vehicle_id)
+                ->update(['type' => ($request->type), 'unit_per_1km' => ($request->unit_per_1km)]
 
-                        );
+                );
 
-                $driver_id = DB::table('vehicle_drivers')->where('vehicles_vehicle_id',$vehicle_id)->value('driver_id');
+            $driver_id = DB::table('vehicle_drivers')->where('vehicles_vehicle_id', $vehicle_id)->value('driver_id');
 
-                if($driver_id) {
+            if ($driver_id) {
                 DB::table('vehicle_drivers')
-                        ->where('driver_id', $driver_id)
-                        ->update(['driver_name'=>($request->driver_name), 'driver_contact_no'=>($request->driver_contact_no)]);
+                    ->where('driver_id', $driver_id)
+                    ->update(['driver_name' => ($request->driver_name), 'driver_contact_no' => ($request->driver_contact_no)]);
 
-                }
-
-                $owner_id= DB::table('vehicles')->where('vehicle_id',$vehicle_id)->value('vehicle_owners_owner_id');
-
-                if($owner_id){
-                    DB::table('vehicle_owners')
-                        ->where('owner_id',$owner_id)
-                        ->update(['owner_name'=>($request->owner_name),'owner_contact_no'=>$request->owner_name]);
-                }
-
-                return response()->json([
-                    'message' => 'successfully updated',
-               ], 200);
-
-            }else{
-                return response()->json([
-                    'message' => 'Not Found',
-                ], 404);
             }
+
+            $owner_id = DB::table('vehicles')->where('vehicle_id', $vehicle_id)->value('vehicle_owners_owner_id');
+
+            if ($owner_id) {
+                DB::table('vehicle_owners')
+                    ->where('owner_id', $owner_id)
+                    ->update(['owner_name' => ($request->owner_name), 'owner_contact_no' => $request->owner_contact_no]);
+            }
+
+
+            $device_id = DB::table('vehicle_gps_devices')->where('vehicles_vehicle_id',$vehicle_id)->value('device_id');
+
+            if($device_id){
+                DB::table('vehicle_gps_devices')
+                    ->where('device_id',$device_id)
+                    ->update(['serial_number'=>($request->serial_number),'status'=>($request->status)]);
+            }
+
+            return response()->json([
+                'message' => 'successfully updated',
+            ], 200);
+
+        } else {
+            return response()->json([
+                'message' => 'Not Found',
+            ], 404);
+        }
 
 
     }
 
 
-    public function deleteVehicle(Request $request){
+    public function deleteVehicle(Request $request, $id)
+    {
 
 //        $company = DB::table('vehicles')
 //            ->where('vehicle_name',$request->vehicle_name)
 //            ->delete();
-        $vehicle_number = $request->input('vehicle_number');
-        if($vehicle_number) {
-            $vehicle_id = DB::table('vehicles')->where('vehicle_number', $vehicle_number)->value('vehicle_id');
+        //$vehicle_number = $request->input('vehicle_number');
+
+        $vehicle_id = $id;
+
+        if ($vehicle_id) {
+            $vehicle_number = DB::table('vehicles')->where('vehicle_id', $vehicle_id)->value('vehicle_number');
 
             DB::table('vehicle_drivers')->where('vehicles_vehicle_id', $vehicle_id)->delete();
             DB::table('gps_readings')->where('vehicles_vehicle_id', $vehicle_id)->delete();
@@ -280,7 +295,7 @@ class VehicleController extends Controller
             return response()->json([
                 'message' => 'successfully deleted',
             ], 200);
-        }else{
+        } else {
             return response()->json([
                 'message' => 'Not found',
             ], 404);
@@ -290,9 +305,9 @@ class VehicleController extends Controller
     }
 
 
-
     ///for super admin-no send any requested data
-    public function getVehicleCount(Request $request){
+    public function getVehicleCount(Request $request)
+    {
 
         $vehicleCount = DB::table('vehicles')
             ->get('vehicle_number')
@@ -300,28 +315,91 @@ class VehicleController extends Controller
 
 
         return response()->json([
-            'vehiclesCount'=>$vehicleCount
+            'vehiclesCount' => $vehicleCount
         ]);
     }
 
 
     //for transport manager and staff
-    public function getUniqueCompanyVehicleCount(Request $request){
+    public function getUniqueCompanyVehicleCount(Request $request)
+    {
 
-    $companyVehicleCount = DB::table('vehicles')
-                ->get('companies_company_id',$request->company_id)
-                ->count();
+        $companyVehicleCount = DB::table('vehicles')
+            ->get('companies_company_id', $request->company_id)
+            ->count();
 
-    if($companyVehicleCount){
-        return response()->json([
-            'companyVehicleCount'=>$companyVehicleCount
-        ],200);
-    }else{
-        return response()->json([
-            'message'=>'Not Found'
-        ],404);
+        if ($companyVehicleCount) {
+            return response()->json([
+                'companyVehicleCount' => $companyVehicleCount
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Not Found'
+            ], 404);
+        }
+
     }
 
+
+    public function getAllVehiclesDetails(Request $request)
+    {
+
+        $vehicles = DB::table('vehicles')
+            ->get();
+
+        //should get company names according to company id
+
+        return response()->json([
+            'vehicles' => $vehicles
+        ]);
+
     }
+
+
+ //==========================================for transport manager==========================================
+    public function oneCompanyVehicleCount(Request $request,$id){
+
+        /////id=company id
+        $vehicles_count = DB::table('vehicles')
+            ->where('companies_company_id',$id)->count();
+
+
+        if($vehicles_count){
+            return response([
+                'message'=>'success',
+                'vehicle_count'=>$vehicles_count
+            ],200);
+        }else{
+            return response([
+                'message'=>'vehicles not found',
+
+            ]);
+        }
+    }
+
+
+//for transport manger get vehicle details
+ public function getVehicleDetailsForTM(Request $request,$id){
+
+        $vehicle_details = DB::table('vehicles')
+            ->where('companies_company_id',$id)->get();
+
+
+        if($vehicle_details){
+            return response([
+                'message'=>'success',
+                'vehicle_details'=>$vehicle_details
+            ],200);
+        }else{
+            return response([
+                'message'=>'vehicles not found',
+            ]);
+        }
+    }
+
+
+
+
+
 
 }

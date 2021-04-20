@@ -31,7 +31,7 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,7 +42,7 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\company  $company
+     * @param \App\Models\company $company
      * @return \Illuminate\Http\Response
      */
     public function show(company $company)
@@ -53,7 +53,7 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\company  $company
+     * @param \App\Models\company $company
      * @return \Illuminate\Http\Response
      */
     public function edit(company $company)
@@ -64,8 +64,8 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\company  $company
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\company $company
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, company $company)
@@ -76,7 +76,7 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\company  $company
+     * @param \App\Models\company $company
      * @return \Illuminate\Http\Response
      */
     public function destroy(company $company)
@@ -85,12 +85,13 @@ class CompanyController extends Controller
     }
 
 
-    public function saveCompany(Request $request){
-       $company = new company;
+    public function saveCompany(Request $request)
+    {
+        $company = new company;
         //error_log($request);
-        $company->company_name=$request->company_name;
-        $company->company_location=$request->company_location;
-        $company->company_address=$request ->company_address;
+        $company->company_name = $request->company_name;
+        $company->company_location = $request->company_location;
+        $company->company_address = $request->company_address;
         $company->save();
 
 //        $company = company::create([
@@ -100,105 +101,105 @@ class CompanyController extends Controller
 //        ]);
 
 
-
 //        error_log($company);
 ////        $company->save();
         return response()->json([
-            'reply'=>'company added successfully'
-        ],200);
+            'reply' => 'company added successfully'
+        ], 200);
 
 
     }
 
-    public function getCompanyDetails(Request $request){
+    public function getCompanyDetails(Request $request)
+    {
 
         $company = DB::table('companies')
-            ->where('company_name',$request->company_name)
+            ->where('company_name', $request->company_name)
             ->first();
 
 ////should code conditional checking using $company
 
-        if($company) {
+        if ($company) {
             return response()->json([
+                'company_id' => $company->company_id,
                 'company_name' => $company->company_name,
                 'company_location' => $company->company_location,
                 'company_address' => $company->company_address
             ], 200);
-        }else{
-            return response() -> json([
+        } else {
+            return response()->json([
                 'message' => 'companies not found'
-            ],400);
+            ], 400);
         }
 
     }
 
+//['company_name'=>$request->companyName],
+    public function updateCompanyDetails(Request $request)
+    {
 
-    public function updateCompanyDetails(Request $request){
-
-        err_log($request);
+        error_log($request);
         $vehicles = DB::table('companies')
-            ->where('company_id',$request->company_id)
-            ->update(
-              ['company_name'=>$request->company_name],
-                ['company_location'=>$request->company_location],
-                ['company_address'=>$request->company_address]
+            ->where('company_name', $request->companyName)
+            ->update([
+                'company_location' => $request->companyLocation,
+                'company_address' => $request->companyAddress
 
-            );
+            ]);
 
-        if($vehicles) {
+        if ($vehicles) {
             return response()->json([
                 'message' => 'successfully updated',
             ], 200);
-        }else{
+        } else {
             return response()->json([
                 'update' => 'Update fail'
-            ],400);
+            ], 400);
         }
     }
 
 
-    public function getAllCompanies(Request $request){
+    public function getAllCompanies(Request $request)
+    {
 
         $companies = DB::table('companies')->pluck('company_name')->toArray();
 
 
-
-        return response() ->json([
-            'companies'=>$companies
-        ],200);
-
+        return response()->json([
+            'companies' => $companies
+        ], 200);
 
 
     }
 
 
-    public function deleteCompany(Request $request){
+    public function deleteCompany(Request $request,$id)
+    {
 
+        $company_id =$id;
+//        $company_id = DB::table('companies')
+//            ->where('company_name', $request->company_name)
+//            ->value('company_id');
 
-        $company_id = DB::table('companies')
-            ->where('company_name',$request->company_name)
-            ->value('company_id');
-
-        if($company_id){
-            $user = DB::table('users')->where('companies_company_id',$company_id)->pluck('id')->toArray();
-            $vehicle = DB::table('vehicles')->where('companies_company_id',$company_id)->pluck('vehicle_id')->toArray();
-            if(count($user)>0 || count($vehicle)>0) {
+        if ($company_id) {
+            $user = DB::table('users')->where('companies_company_id', $company_id)->pluck('id')->toArray();
+            $vehicle = DB::table('vehicles')->where('companies_company_id', $company_id)->pluck('vehicle_id')->toArray();
+            if (count($user) > 0 || count($vehicle) > 0) {
                 return response()->json([
                     'message' => 'Delete Existing Users or Vehicles first '
-                ], 400);
+                ], 200);
 
-            }
-            else{
+            } else {
 
-                DB::table('companies')->where('company_id',$company_id)->delete();
+                DB::table('companies')->where('company_id', $company_id)->delete();
                 return response()->json([
                     'message' => 'Deleted Successfully '
                 ], 200);
 
-                }
+            }
 
 
-        }else{
+        } else {
             return response()->json([
                 'message' => 'Not found '
             ], 404);
@@ -208,24 +209,41 @@ class CompanyController extends Controller
 
 
     ///for super admin-no send any requested data
-    public function getCompanyCount(Request $request){
+    public function getCompanyCount(Request $request)
+    {
 
         $companyCount = DB::table('companies')
             ->get('company_name')
             ->count();
 
-        if($companyCount) {
+        if ($companyCount) {
             return response()->json([
                 'numberOfCompanies' => $companyCount
-            ],200);
+            ], 200);
 
-        }else{
+        } else {
             return response()->json([
-                'message'=>'Not Found any Vehicle'
-            ],404);
+                'message' => 'Not Found any Vehicle'
+            ], 404);
         }
 
     }
+
+
+    public function getAllCompaniesDetails(Request $request)
+    {
+
+        $companies = DB::table('companies')
+                        ->get();
+
+
+        return response()->json([
+            'companies'=>$companies
+        ]);
+
+
+    }
+
 
 
 

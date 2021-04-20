@@ -19,9 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfcef9b3-cfcd-4ca8-a258-9835e6b0a56f" name="Default Changelist" comment="commit changes before developed forgot password">
+    <list default="true" id="dfcef9b3-cfcd-4ca8-a258-9835e6b0a56f" name="Default Changelist" comment="location tab user authentication">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ForgotController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Mails/forgot.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VehicleOwnerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VehicleOwnerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/gps_reading.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/gps_reading.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,6 +215,38 @@
       <workItem from="1617806262026" duration="1226000" />
       <workItem from="1617807806650" duration="2226000" />
       <workItem from="1617856916954" duration="1402000" />
+      <workItem from="1617860501527" duration="9513000" />
+      <workItem from="1617875116010" duration="10766000" />
+      <workItem from="1617898596099" duration="4424000" />
+      <workItem from="1617940269981" duration="628000" />
+      <workItem from="1617943347699" duration="2620000" />
+      <workItem from="1617954502398" duration="1456000" />
+      <workItem from="1617963654081" duration="1226000" />
+      <workItem from="1617978651788" duration="2550000" />
+      <workItem from="1618119357420" duration="4096000" />
+      <workItem from="1618126093469" duration="192000" />
+      <workItem from="1618132595394" duration="1939000" />
+      <workItem from="1618146781136" duration="3825000" />
+      <workItem from="1618153829264" duration="5532000" />
+      <workItem from="1618194035648" duration="8000" />
+      <workItem from="1618196331791" duration="10500000" />
+      <workItem from="1618220400671" duration="112000" />
+      <workItem from="1618418141229" duration="2559000" />
+      <workItem from="1618461268266" duration="605000" />
+      <workItem from="1618485497164" duration="8476000" />
+      <workItem from="1618496991695" duration="7076000" />
+      <workItem from="1618567447853" duration="1392000" />
+      <workItem from="1618585060429" duration="174000" />
+      <workItem from="1618630974826" duration="7764000" />
+      <workItem from="1618647364317" duration="6125000" />
+      <workItem from="1618716962685" duration="1125000" />
+      <workItem from="1618732569828" duration="1892000" />
+      <workItem from="1618755078119" duration="4028000" />
+      <workItem from="1618808346666" duration="1002000" />
+      <workItem from="1618811367190" duration="1475000" />
+      <workItem from="1618835690206" duration="1223000" />
+      <workItem from="1618846122542" duration="1208000" />
+      <workItem from="1618889223632" duration="13558000" />
     </task>
     <task id="LOCAL-00001" summary="31st edited">
       <created>1617167093183</created>
@@ -251,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617807874200</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="location tab user authentication">
+      <created>1617860807762</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617860807763</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,7 +323,8 @@
     <MESSAGE value="developed CRUD delete function" />
     <MESSAGE value="developed some super admin,manager based functions" />
     <MESSAGE value="commit changes before developed forgot password" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit changes before developed forgot password" />
+    <MESSAGE value="location tab user authentication" />
+    <option name="LAST_COMMIT_MESSAGE" value="location tab user authentication" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1617115860531">
@@ -304,15 +351,23 @@
     </state>
     <state width="1237" height="126" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617283342663" />
     <state width="1237" height="126" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252755120" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617807887058">
+    <state x="604" y="335" key="NewPhpFileDialog" timestamp="1618493165147">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617807887058" />
+    <state x="604" y="335" key="NewPhpFileDialog/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1618493165147" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617860817762">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617860817762" />
     <state x="2221" y="173" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1280.984@1920.0.1280.984" timestamp="1617252233131" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617645497643" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1617807990209">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1618652547508">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1617807990209" />
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1618652547508" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1618489491028">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1280.984@0.0.1536.824" timestamp="1618489491028" />
   </component>
 </project>
