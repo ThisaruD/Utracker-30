@@ -70,6 +70,9 @@ Route::get('/getcompanycount',[\App\Http\Controllers\CompanyController::class,'g
 //get all companies all details, for super admin
 Route::get('/getallcompaniesdetails',[\App\Http\Controllers\CompanyController::class, 'getAllCompaniesDetails']);
 
+//get company name for transport manager add-user function
+Route::get('/getcompanyname/{id}',[\App\Http\Controllers\CompanyController::class, 'getCompanyName']);
+
 
 
 

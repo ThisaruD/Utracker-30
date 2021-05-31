@@ -55,8 +55,8 @@ class AuthController extends Controller
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                'message' => 'Invalidlogindetails'
-            ], 401);
+                'message' => 'Invalid login details'
+            ], );
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
@@ -187,7 +187,7 @@ class AuthController extends Controller
         $user_count = DB::table('users')
             ->where([
                 ['companies_company_id',$id],
-                ['user_role_id',$request->user_role_id]
+                ['user_roles_role_id',$request->user_role_id]
                 ])
             ->count();
 

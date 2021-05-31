@@ -138,7 +138,7 @@ class CompanyController extends Controller
     public function updateCompanyDetails(Request $request)
     {
 
-        error_log($request);
+
         $vehicles = DB::table('companies')
             ->where('company_name', $request->companyName)
             ->update([
@@ -161,22 +161,46 @@ class CompanyController extends Controller
 
     public function getAllCompanies(Request $request)
     {
+//if else for tm-one company & Admin all company
+        if ($request->company_id) {
 
-        $companies = DB::table('companies')->pluck('company_name')->toArray();
+
+            $company = array();
+
+            $companies = DB::table('companies')
+                ->select('company_name')
+                ->where('company_id', $request->company_id)
+                ->get();
+
+            foreach ($companies as $comp) {
+                array_push($company, $comp->company_name);
+            }
 
 
-        return response()->json([
-            'companies' => $companies
-        ], 200);
+
+            return response()->json([
+                'company' => $company
+            ], 200);
+
+
+        } else {
+
+            $companies = DB::table('companies')->pluck('company_name')->toArray();
+
+
+            return response()->json([
+                'companies' => $companies
+            ], 200);
+        }
 
 
     }
 
 
-    public function deleteCompany(Request $request,$id)
+    public function deleteCompany(Request $request, $id)
     {
 
-        $company_id =$id;
+        $company_id = $id;
 //        $company_id = DB::table('companies')
 //            ->where('company_name', $request->company_name)
 //            ->value('company_id');
@@ -229,25 +253,46 @@ class CompanyController extends Controller
 
     }
 
-
+//for super admin
     public function getAllCompaniesDetails(Request $request)
     {
 
         $companies = DB::table('companies')
-                        ->get();
+            ->get();
 
 
         return response()->json([
-            'companies'=>$companies
+            'companies' => $companies
         ]);
 
 
     }
 
 
+//for transport manager add user function
+    public function getCompanyName(Request $request, $id)
+    {
+
+        $company_name = DB::table('companies')
+            ->where('company_id', $id)
+            ->select('company_name')
+            ->get();
 
 
+        if ($company_name) {
+            return response([
 
+                'company_name' => $company_name
+            ]);
+
+        } else {
+            return response([
+                'message' => 'cannot find company'
+            ]);
+        }
+
+
+    }
 
 
 }

@@ -208,7 +208,8 @@ class VehicleController extends Controller
                 'owner_name' => $owner->owner_name,
                 'owner_contact_no' => $owner->owner_contact_no,
                 'serial_number' => $device->serial_number,
-                'status1' => $device->status
+                'status1' => $device->status,
+                'date'=>$vehicles->created_at
 
             ], 200);
         } else {
