@@ -85,7 +85,8 @@ class AuthController extends Controller
         if ($vehicles) {
 //            return 'message'=>'Delete Existing Vehicles First';
             return response()->json([
-                'message' => 'Delete Existing Vehicles First'
+                'message' => 'Delete Existing Vehicles First',
+
             ]);
         } else {
 
@@ -98,7 +99,8 @@ class AuthController extends Controller
         echo($user);
         if ($user) {
             return response()->json([
-                'message' => 'Successfully deleted'
+                'message' => 'Successfully deleted',
+                 'operation' => 'success'
             ], 200);
         } else {
             return response()->json([
@@ -165,17 +167,23 @@ class AuthController extends Controller
             $vehicle = DB::table('vehicles')->where('users_id', $user_id)->pluck('vehicle_id')->toArray();
             if (count($vehicle) > 0) {
                 return response()->json([
-                    'message' => 'User has Existing Vehicles. Delete Vehicles First'], );
+                    'message' => 'User has Existing Vehicles. Delete Vehicles First',
+                    'operation' => 'Fail'
+                    ], );
             } else {
                 DB::table('users')->where('id', $user_id)->delete();
                 return response()->json([
-                    'message' => 'User deleted successfully'], );
+                    'message' => 'User deleted successfully',
+                    'operation' => 'Success'
+                    ], );
 
             }
 
         } else {
             return response()->json([
-                'message' => 'User not found'], );
+                'message' => 'User not found',
+                'operation' => 'Success'
+                ], );
         }
     }
 

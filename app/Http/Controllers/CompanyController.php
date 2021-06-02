@@ -87,28 +87,29 @@ class CompanyController extends Controller
 
     public function saveCompany(Request $request)
     {
-        $company = new company;
-        //error_log($request);
-        $company->company_name = $request->company_name;
-        $company->company_location = $request->company_location;
-        $company->company_address = $request->company_address;
-        $company->save();
+        $c_name=$request->company_name;
+        $c_location=$request->company_location;
+        $c_address=$request->company_address;
+        $Existing_company = DB::table('companies')->where('company_name', $c_name )->where('company_location',$c_location)->where('company_address', $c_address)->get();
+        if(count($Existing_company)==0){
+            $company = new company;
+            $company->company_name =$c_name;
+            $company->company_location =$c_location;
+            $company->company_address =$c_address;
+            $company->save();
+            return response()->json([
+                'reply' => 'company added successfully'
+            ], 200);
 
-//        $company = company::create([
-//            'company_name'=>$request->company_name,
-//            'company_location'=>$request->company_location,
-//            'company_address'=>$request->company_address
-//        ]);
+        }else{
+            return response()->json([
+                'reply' => 'company has already exist !'
+            ], 201);
 
-
-//        error_log($company);
-////        $company->save();
-        return response()->json([
-            'reply' => 'company added successfully'
-        ], 200);
-
-
+        }
     }
+
+
 
     public function getCompanyDetails(Request $request)
     {
@@ -134,6 +135,8 @@ class CompanyController extends Controller
 
     }
 
+
+
 //['company_name'=>$request->companyName],
     public function updateCompanyDetails(Request $request)
     {
@@ -157,6 +160,8 @@ class CompanyController extends Controller
             ], 400);
         }
     }
+
+
 
 
     public function getAllCompanies(Request $request)
@@ -195,6 +200,8 @@ class CompanyController extends Controller
 
 
     }
+
+
 
 
     public function deleteCompany(Request $request, $id)

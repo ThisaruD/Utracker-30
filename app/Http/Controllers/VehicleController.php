@@ -347,12 +347,15 @@ class VehicleController extends Controller
 
         $vehicles = DB::table('vehicles')
             ->get();
-
-        //should get company names according to company id
+        for($i=0;$i<count($vehicles);$i++){
+            $company_name=$course_id = DB::table('companies')->where('company_id', $vehicles[$i]->companies_company_id )->value('company_name');
+            $vehicles[$i]->company_name=$company_name;
+        }
 
         return response()->json([
             'vehicles' => $vehicles
         ]);
+
 
     }
 
